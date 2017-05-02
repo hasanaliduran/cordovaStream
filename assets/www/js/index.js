@@ -1,4 +1,25 @@
 var app = {
+    paths: {
+        inform: "http://129509fb.ngrok.io/myapp/media/uploadbyte"
+    },
+    informRest: function(channel_name){
+        xhr = new XMLHttpRequest();
+        var url = app.paths.inform;
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-type", "application/json");
+        xhr.setRequestHeader("Authorization", "Basic ZTE5NDE5MEBtZXR1LmVkdS50cjoxMjM0NTY3OA==");
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+//                var json = JSON.parse(xhr.responseText);
+            }
+        }
+        var obj = {
+                  	"type": "livestream",
+                  	"data": "tug2"
+                  };
+        var data = JSON.stringify(obj);
+        xhr.send(data);
+    },
     initialize: function() {
         console.error = window.onerror = function() {
             if (JSON.stringify(arguments).indexOf('iosrtc') !== -1) {
@@ -250,6 +271,9 @@ var app = {
                     userid: connection.userid,
                     typeOfStreams: connection.session
                 });
+
+                /**/
+                app.informRest(broadcastId);
             });
         };
 
