@@ -56,7 +56,7 @@ var app = {
             alert('Seems disconnected.');
         }, false);
 
-        document.querySelector('.btn-leave-room').onclick = function() {
+        document.querySelector('.btn-danger').onclick = function() {
             if(window.connection) {
                 try {
                     window.connection.attachStreams.forEach(function(stream) {
@@ -249,7 +249,10 @@ var app = {
             }
 
             document.getElementById('open-or-join').disabled = true;
-
+            document.getElementById('open-or-join').style.display="none";
+             document.getElementById('broadcast-id').style.display="none";
+              document.getElementById('str').style.display="none";
+            document.getElementById("video-preview").style.display="block";
             connection.session = {
                 audio: true,
                 video: true,
